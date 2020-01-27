@@ -21,7 +21,7 @@ public class TrainerServiceImpl implements TrainerService {
 
     @Override
     public Trainer getTrainer(String name) {
-        return trainerRepository.findById(name).orElse(new Trainer());
+        return trainerRepository.findById(name).orElse(null);
     }
 
     @Override

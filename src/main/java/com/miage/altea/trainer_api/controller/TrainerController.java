@@ -22,7 +22,7 @@ public class TrainerController {
         return this.trainerService.getAllTrainers();
     }
 
-    @PutMapping("/")
+    @PostMapping("/")
     ResponseEntity<Trainer> saveTrainer(@RequestBody Trainer trainer) {
         return new ResponseEntity<>(this.trainerService.createTrainer(trainer), HttpStatus.CREATED);
     }
