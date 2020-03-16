@@ -28,7 +28,7 @@ public class TrainerController {
     }
 
     @DeleteMapping("/{name}")
-    ResponseEntity<Integer> deleteTrainer(@PathVariable String name){
+    ResponseEntity<Trainer> deleteTrainer(@PathVariable String name){
         return new ResponseEntity<>(this.trainerService.deleteTrainer(name), HttpStatus.ACCEPTED);
     }
 

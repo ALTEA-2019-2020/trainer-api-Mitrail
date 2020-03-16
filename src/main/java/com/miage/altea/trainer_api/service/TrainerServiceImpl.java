@@ -30,8 +30,9 @@ public class TrainerServiceImpl implements TrainerService {
     }
 
     @Override
-    public Integer deleteTrainer(String name) {
+    public Trainer deleteTrainer(String name) {
+        Trainer t = this.trainerRepository.findById(name).get();
         this.trainerRepository.deleteById(name);
-        return 1;
+        return t;
     }
 }
