@@ -7,6 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("/trainers")
 public class TrainerController {
@@ -18,8 +21,10 @@ public class TrainerController {
     }
 
     @GetMapping("/")
-    Iterable<Trainer> getAllTrainers(){
-        return this.trainerService.getAllTrainers();
+    Trainer[] getAllTrainers(){
+        List<Trainer> trainers = new ArrayList<>();
+        this.trainerService.getAllTrainers().forEach(trainers::add);
+        return trainers.toArray(Trainer[]::new);
     }
 
     @PostMapping("/")

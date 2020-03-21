@@ -120,7 +120,7 @@ public class TrainerControllerIntegrationTest {
 
     @Test
     void getAllTrainers_shouldReturnAshAndMisty() {
-        var trainers = this.restTemplate.getForObject("http://localhost:" + port + "/trainers/", Trainer[].class);
+        var trainers = this.restTemplate.withBasicAuth(username, password).getForObject("http://localhost:" + port + "/trainers/", Trainer[].class);
         assertNotNull(trainers);
         assertEquals(2, trainers.length);
 
@@ -131,7 +131,7 @@ public class TrainerControllerIntegrationTest {
     @Test
     void deleteTrainer_withNameAsh_shouldReturn1() {
         this.restTemplate.delete("http://localhost:" + port + "/trainers/Ash");
-        var ash = this.restTemplate.getForObject("http://localhost:" + port + "/trainers/Ash", Trainer.class);
+        var ash = this.restTemplate.withBasicAuth(username, password).getForObject("http://localhost:" + port + "/trainers/Ash", Trainer.class);
         assertNull(ash);
     }
 }
