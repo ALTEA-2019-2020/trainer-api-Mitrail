@@ -68,64 +68,8 @@ public class TrainerControllerIntegrationTest {
     }
 
     @Test
-    void getTrainer_withNameAsh_shouldReturnAsh() {
-        var ash = this.restTemplate
-                .withBasicAuth(username, password)
-                .getForObject("http://localhost:" + port + "/trainers/Ash", Trainer.class);
-
-        assertNotNull(ash);
-        assertEquals("Ash", ash.getName());
-        assertEquals(1, ash.getTeam().size());
-
-        assertEquals(25, ash.getTeam().get(0).getPokemonTypeId());
-        assertEquals(18, ash.getTeam().get(0).getLevel());
-    }
-
-    @Test
     void trainerController_shouldBeInstanciated(){
         assertNotNull(controller);
-    }
-
-    @Test
-    void putCreateTrainer_withNameAsh_shouldReturnNewTrainer() {
-        ArrayList<Pokemon> pokemons = new ArrayList<>();
-        pokemons.add(Pokemon.builder().pokemonTypeId(1).level(1).build());
-        Trainer newTrainer = Trainer.builder().name("test").team(pokemons).build();
-        var ash = this.restTemplate.withBasicAuth(username, password).postForEntity("http://localhost:" + port + "/trainers/", newTrainer, Trainer.class).getBody();
-        assertNotNull(ash);
-        assertEquals("test", ash.getName());
-        assertEquals(1, ash.getTeam().size());
-
-        assertEquals(1, ash.getTeam().get(0).getPokemonTypeId());
-        assertEquals(1, ash.getTeam().get(0).getLevel());
-    }
-
-    @Test
-    void putUpdateTrainer_withNameAsh_shouldReturnUpdatedTrainer() {
-        ArrayList<Pokemon> pokemons = new ArrayList<>();
-        pokemons.add(Pokemon.builder().pokemonTypeId(1).level(1).build());
-        pokemons.add(Pokemon.builder().pokemonTypeId(2).level(2).build());
-        Trainer newTrainer = Trainer.builder().name("Ash").team(pokemons).build();
-        var ash = this.restTemplate.withBasicAuth(username, password).postForEntity("http://localhost:" + port + "/trainers/", newTrainer, Trainer.class).getBody();
-        assertNotNull(ash);
-        assertEquals("Ash", ash.getName());
-        assertEquals(2, ash.getTeam().size());
-
-        assertEquals(1, ash.getTeam().get(0).getPokemonTypeId());
-        assertEquals(1, ash.getTeam().get(0).getLevel());
-
-        assertEquals(2, ash.getTeam().get(1).getPokemonTypeId());
-        assertEquals(2, ash.getTeam().get(1).getLevel());
-    }
-
-    @Test
-    void getAllTrainers_shouldReturnAshAndMisty() {
-        var trainers = this.restTemplate.withBasicAuth(username, password).getForObject("http://localhost:" + port + "/trainers/", Trainer[].class);
-        assertNotNull(trainers);
-        assertEquals(2, trainers.length);
-
-        assertEquals("Ash", trainers[0].getName());
-        assertEquals("Misty", trainers[1].getName());
     }
 
     @Test
