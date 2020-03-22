@@ -3,8 +3,11 @@ Ce projet contient l'API trainer-api permettant la gestion des trainers du jeu.
 L'API présente 4 routes :
 
 GET     /trainers 
+
 GET     /trainers/{name}
+
 POST    /trainers/  
+
 DELETE  /trainers/{name}
 
 Les tests de ces routes sont disponibles dans la collection postman trainer-api.postman_collection.json.
